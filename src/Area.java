@@ -3,15 +3,16 @@ import java.util.Collections;
 
 public class Area {
     int width; // Number of pixels in width or number of columns (y-axis)
-    int height; // Number of pixels in height or number of lines (x axis)
+    int height; // Number of pixels in height or number of lines (x-axis)
     ArrayList<ArrayList<Boolean>> mat; // pixel size matrix (width * height)
-    ArrayList<Shape> shapes= new ArrayList<Shape>(); // array of shapes
+    ArrayList<Shape> shapes; // array of shapes
     int nb_shape; // number of shapes in the shapes array (logical size)
 
     Area(int width, int height){
         this.width = width;
         this.height = height;
         this.nb_shape = 0;
+        this.shapes = new ArrayList<Shape>();
         mat = new ArrayList<ArrayList<Boolean>>();
         for (int i = 0; i < height; i++) {
             ArrayList<Boolean> row = new ArrayList<Boolean>(Collections.nCopies(width, false));
@@ -28,38 +29,9 @@ public class Area {
     }
 
     void add_shape_to_area(Point add_shape){
+        add_shape.create_shape_to_pixel();
         this.shapes.add(add_shape);
-        this.shapes.get(this.shapes.size()-1).pixel_arr.addAll(add_shape.pixel_arr);
-        this.nb_shape = this.shapes.size();
-    }
-
-    void add_shape_to_area(Line add_shape){
-        this.shapes.add(add_shape);
-//        this.shapes.get(this.shapes.size()-1).pixel_arr.containsAll(add_shape.pixel_arr);
-        this.nb_shape = this.shapes.size();
-    }
-
-    void add_shape_to_area(Square add_shape){
-        this.shapes.add(add_shape);
-//        this.shapes.get(this.shapes.size()-1).pixel_arr.containsAll(add_shape.pixel_arr);
-        this.nb_shape = this.shapes.size();
-    }
-
-    void add_shape_to_area(Rectangle add_shape){
-        this.shapes.add(add_shape);
-//        this.shapes.get(this.shapes.size()-1).pixel_arr.containsAll(add_shape.pixel_arr);
-        this.nb_shape = this.shapes.size();
-    }
-
-    void add_shape_to_area(Circle add_shape){
-        this.shapes.add(add_shape);
-//        this.shapes.get(this.shapes.size()-1).pixel_arr.containsAll(add_shape.pixel_arr);
-        this.nb_shape = this.shapes.size();
-    }
-
-    void add_shape_to_area(Polygon add_shape){
-        this.shapes.add(add_shape);
-//        this.shapes.get(this.shapes.size()-1).pixel_arr.containsAll(add_shape.pixel_arr);
+        System.out.println("add : "+add_shape.shape_type);
         this.nb_shape = this.shapes.size();
     }
 

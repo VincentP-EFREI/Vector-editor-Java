@@ -12,7 +12,7 @@ class Pixel {
 public abstract class Shape {
     int id;
     String shape_type;
-    ArrayList<Pixel> pixel_arr;
+    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
     abstract void print();
 
@@ -25,10 +25,8 @@ public abstract class Shape {
 
 class Point extends Shape{
     int x, y, nb_pixels;
-    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
-
-    Point(int x, int y){
+    public Point(int x, int y){
         this.x = x;
         this.y = y;
         this.shape_type = "POINT";
