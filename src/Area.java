@@ -28,10 +28,8 @@ public class Area {
         }
     }
 
-    void add_shape_to_area(Point add_shape){
-        add_shape.create_shape_to_pixel();
+    void add_shape_to_area(Shape add_shape){
         this.shapes.add(add_shape);
-        System.out.println("add : "+add_shape.shape_type);
         this.nb_shape = this.shapes.size();
     }
 
@@ -56,9 +54,9 @@ public class Area {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 if(this.mat.get(i).get(j))
-                    System.out.print("* ");
+                    System.out.print("*  ");
                 else
-                    System.out.print("- ");
+                    System.out.print("-  ");
             }
             System.out.println();
         }

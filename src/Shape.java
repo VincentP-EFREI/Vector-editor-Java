@@ -53,7 +53,6 @@ class Point extends Shape{
 class Line extends Shape{
     Point p1, p2;
     int nb_pixels;
-    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
     Line(Point p1, Point p2){
         this.p1 = p1;
@@ -95,8 +94,8 @@ class Line extends Shape{
         int dx_ab = Math.abs(dx);
         int dy_ab = Math.abs(dy);
 
-        int dmin = Math.min(dx, dy);
-        int dmax = Math.max(dx, dy);
+        int dmin = Math.min(dx_ab, dy_ab);
+        int dmax = Math.max(dx_ab, dy_ab);
         int remaining = (dmax + 1) % (dmin + 1);
 
         int nb_segs = dmin + 1;
@@ -162,7 +161,6 @@ class Line extends Shape{
 class Square extends Shape{
     Point p;
     int length, nb_pixels;
-    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
     Square(Point p, int length){
         this.p = p;
@@ -203,7 +201,6 @@ class Square extends Shape{
 class Rectangle extends Shape{
     Point p;
     int length, width, nb_pixels;
-    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
     Rectangle(Point p){
         this(p, 1, 1);
@@ -262,7 +259,6 @@ class Rectangle extends Shape{
 class Circle extends Shape{
     Point p;
     int radius, nb_pixels;
-    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
     Circle(int radius){
         this(new Point(0,0), radius);
@@ -335,9 +331,8 @@ class Circle extends Shape{
 
 class Polygon extends Shape{
     int nb_pixels;
-    ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
     ArrayList<Line> line_arr = new ArrayList<Line>();
-    ArrayList<Point> PointList = new ArrayList<>();
+    ArrayList<Point> PointList;
 
 
     Polygon(ArrayList<Point> PointList){
