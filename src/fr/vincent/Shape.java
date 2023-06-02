@@ -1,3 +1,5 @@
+package fr.vincent;
+
 import java.util.ArrayList;
 
 class Pixel {
@@ -8,7 +10,7 @@ class Pixel {
         this.y = y;
     }
 }
-    ///Main Class///
+    ///fr.vincent.Main Class///
 public abstract class Shape {
     int id;
     String shape_type;
@@ -73,88 +75,32 @@ class Line extends Shape{
 
     @Override
     void create_shape_to_pixel() {
-        int test_dx = this.p2.x - this.p1.x;
-        int x1, y1, x2, y2, dx, dy;
-        if (test_dx < 0) {
-            x1 = this.p1.x;
-            y1 = this.p1.y;
-            x2 = this.p2.x;
-            y2 = this.p2.y;
-            dx = x2 - x1;
-            dy = y2 - y1;
-        }
-        else {
-            x1 = this.p2.x;
-            y1 = this.p2.y;
-            x2 = this.p1.x;
-            y2 = this.p1.y;
-            dx = this.p2.x - this.p1.x;
-            dy = this.p2.y - this.p1.y;
-        }
-        int dx_ab = Math.abs(dx);
-        int dy_ab = Math.abs(dy);
+        int dx = Math.abs(p2.x - p1.x);
+        int dy = Math.abs(p2.y - p1.y);
+        int sx = (p1.x < p2.x) ? 1 : -1;
+        int sy = (p1.y < p2.y) ? 1 : -1;
+        int err = dx - dy;
 
-        int dmin = Math.min(dx_ab, dy_ab);
-        int dmax = Math.max(dx_ab, dy_ab);
-        int remaining = (dmax + 1) % (dmin + 1);
+        int x = p1.x;
+        int y = p1.y;
 
-        int nb_segs = dmin + 1;
-        int base = (dmax + 1) / (dmin + 1);
+        while (true) {
+            pixel_arr.add(new Pixel(x, y));
 
-        ArrayList<Integer> segments = new ArrayList<Integer>();
-        for (int i = 0; i < nb_segs; i++) {
-            segments.add(base);
-        }
+            if (x == p2.x && y == p2.y)
+                break;
 
-        ArrayList<Integer> cumuls = new ArrayList<Integer>(nb_segs);
-
-        for (int i = 0; i < nb_segs; i++) {
-            int val;
-            if (((i + 1) * remaining) % (dmin + 1) < (i * remaining) % (dmin + 1)) val = 1;
-            else val = 0;
-            cumuls.add(val);
-            segments.set(i, segments.get(i) + cumuls.get(i));
-        }
-
-        if (dy < 0) {
-            if (dx_ab > dy_ab) {
-                int add = 0;
-                for (int i = 0; i < nb_segs; i++) {
-                    for (int j = 0; j < segments.get(i); j++) {
-                        this.pixel_arr.add(create_pixel(x2 - add - j, y2 + i));
-                    }
-                    add += segments.get(i);
-                }
-            } else {
-                int add = 0;
-                for (int i = 0; i < nb_segs; i++) {
-                    for (int j = 0; j < segments.get(i); j++) {
-                        this.pixel_arr.add(create_pixel(x2 - i, y2 + add + j));
-                    }
-                    add += segments.get(i);
-                }
+            int e2 = 2 * err;
+            if (e2 > -dy) {
+                err -= dy;
+                x += sx;
+            }
+            if (e2 < dx) {
+                err += dx;
+                y += sy;
             }
         }
-        else {
-            if (dx_ab > dy_ab) {
-                int add = 0;
-                for (int i = 0; i < nb_segs; i++) {
-                    for (int j = 0; j < segments.get(i); j++) {
-                        this.pixel_arr.add(create_pixel(x1+add+j,y1+i));
-                    }
-                    add += segments.get(i);
-                }
-            } else {
-                int add = 0;
-                for (int i = 0; i < nb_segs; i++) {
-                    for (int j = 0; j < segments.get(i); j++) {
-                        this.pixel_arr.add(create_pixel(x1 + i, y1 + add + j));
-                    }
-                    add += segments.get(i);
-                }
-            }
-        }
-        this.nb_pixels = pixel_arr.size();
+        nb_pixels = pixel_arr.size();
     }
 }
 
@@ -262,7 +208,7 @@ class Circle extends Shape{
 
     Circle(int radius){
         this(new Point(0,0), radius);
-        this.shape_type = "Circle";
+        this.shape_type = "fr.vincent.Circle";
         this.nb_pixels = 0;
         create_shape_to_pixel();
     }

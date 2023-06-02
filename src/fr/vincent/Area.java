@@ -1,3 +1,5 @@
+package fr.vincent;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
