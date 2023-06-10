@@ -31,16 +31,47 @@ public class Main {
                     }
                 }
                 case 'B' -> {
-                    for(Shape shape : screen_area.shapes){
+                    CLI.cls();
+                    for(Shape shape : screen_area.shapes)
                         shape.print(false);
-                    }
                     if(screen_area.shapes.size() == 0)
                         System.out.println("The list is empty.");
-                    scanner.next();
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
                 case 'C' -> {
-                    for(Shape shape : screen_area.shapes){
+                    CLI.cls();
+                    for(Shape shape : screen_area.shapes)
                         shape.print(true);
+                    if(screen_area.shapes.size() == 0) {
+                        System.out.println("The list is empty.");
+                        System.out.print("Press Enter to continue...");
+                        scanner.nextLine();
+                    }
+                    else {
+                        String toPrintString = "You need to give the id of the shape you want to delete, enter 0 if you want to abort.";
+                        String toAskString = "\nid : ";
+                        int val = CLI.valAffectation(toPrintString, toAskString);
+                        boolean notFound = true;
+                        int index = 0;
+                        do{
+                            if (val == 0)
+                                break;
+                            for (int i = 0; i < screen_area.nb_shape; i++) {
+                                if (val == screen_area.shapes.get(i).id) {
+                                    notFound = false;
+                                    index = i;
+                                }
+                            }
+                            if(!notFound)
+                                screen_area.shapes.remove(index);
+                        }while (notFound);
+
+                        if(screen_area.shapes.size() == 0) {
+                            System.out.println("The list is empty.");
+                            System.out.print("Press Enter to continue...");
+                            scanner.nextLine();
+                        }
                     }
                 }
                 case 'D' -> {

@@ -26,7 +26,7 @@ public final class CLI {
         return firstChar;
     }
 
-    private static int valAffectation(String toPrintString, String toAskString){
+    public static int valAffectation(String toPrintString, String toAskString){
         int val = 0;
         boolean error;
         do {
@@ -40,6 +40,7 @@ public final class CLI {
                 Main.scanner.nextLine();
                 error = true;
             }
+            Main.scanner.nextLine();
         }while (error);
         return val;
     }

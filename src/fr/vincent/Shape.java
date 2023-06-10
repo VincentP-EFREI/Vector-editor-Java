@@ -12,9 +12,15 @@ class Pixel {
 }
     ///fr.vincent.Main Class///
 public abstract class Shape {
+    static int global_id = 1;
     int id;
     String shape_type;
     ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
+
+    Shape() {
+        id = global_id;
+        global_id++;
+    }
 
     abstract void print(boolean id);
 
