@@ -8,20 +8,22 @@ public final class CLI {
     private CLI(){}
 
     public static char boundedChoice(String showStr, char limMin, char limMax, boolean caseSensitif){
-        String val = "\n";
+        String val;
+        char firstChar = '\\';
         boolean error;
         do {
             cls();
             System.out.print("Enter a character: ");
-            val = Main.scanner.next();
+            val = Main.scanner.nextLine();
+            if(!val.isEmpty())
+                firstChar = val.charAt(0);
 
-        }while( (caseSensitif && (val.charAt(0) < limMin || val.charAt(0) > limMax)) ||
-                (!caseSensitif && ((val.charAt(0) < Character.toLowerCase(limMin) || val.charAt(0) > Character.toLowerCase(limMax)) &&
-                        (val.charAt(0) < Character.toUpperCase(limMin) || val.charAt(0) > Character.toUpperCase(limMax)))
+        }while( val.isEmpty() || (caseSensitif && (firstChar < limMin || firstChar > limMax)) ||
+                (!caseSensitif && ((firstChar < Character.toLowerCase(limMin) || firstChar > Character.toLowerCase(limMax)) &&
+                        (firstChar < Character.toUpperCase(limMin) || firstChar > Character.toUpperCase(limMax)))
                 )
         );
-        System.out.println("Return "+val.charAt(0));
-        return val.charAt(0);
+        return firstChar;
     }
 
     private static int valAffectation(String toPrintString, String toAskString){

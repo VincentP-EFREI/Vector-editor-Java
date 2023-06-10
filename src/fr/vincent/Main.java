@@ -31,9 +31,17 @@ public class Main {
                     }
                 }
                 case 'B' -> {
-
+                    for(Shape shape : screen_area.shapes){
+                        shape.print(false);
+                    }
+                    if(screen_area.shapes.size() == 0)
+                        System.out.println("The list is empty.");
+                    scanner.next();
                 }
                 case 'C' -> {
+                    for(Shape shape : screen_area.shapes){
+                        shape.print(true);
+                    }
                 }
                 case 'D' -> {
                 }

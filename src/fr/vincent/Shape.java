@@ -16,7 +16,7 @@ public abstract class Shape {
     String shape_type;
     ArrayList<Pixel> pixel_arr = new ArrayList<Pixel>();
 
-    abstract void print();
+    abstract void print(boolean id);
 
     abstract void create_shape_to_pixel();
 
@@ -37,11 +37,16 @@ class Point extends Shape{
     }
 
     @Override
-    void print() {
-        print_point();
+    void print(boolean id) {
+        if(id) {
+            System.out.printf("id : %d ", this.id);
+            print_point();
+        }
+        else
+            print_point();
     }
 
-    void print_point(){
+    private void print_point(){
         System.out.printf("POINT %d %d\n", this.x, this.y);
     }
 
@@ -65,11 +70,16 @@ class Line extends Shape{
     }
 
     @Override
-    void print() {
-        print_line();
+    void print(boolean id) {
+        if(id) {
+            System.out.printf("id : %d ", this.id);
+            print_line();
+        }
+        else
+            print_line();
     }
 
-    void print_line(){
+    private void print_line(){
         System.out.printf("LINE %d %d %d %d\n", p1.x, p1.y, p2.x, p2.y);
     }
 
@@ -117,11 +127,16 @@ class Square extends Shape{
     }
 
     @Override
-    void print() {
-        print_square();
+    void print(boolean id) {
+        if(id) {
+            System.out.printf("id : %d ", this.id);
+            print_square();
+        }
+        else
+            print_square();
     }
 
-    void print_square(){
+    private void print_square(){
         System.out.printf("SQUARE %d %d %d\n", p.x, p.y, length);
     }
 
@@ -172,11 +187,16 @@ class Rectangle extends Shape{
     }
 
     @Override
-    void print() {
-        print_rectangle();
+    void print(boolean id) {
+        if(id) {
+            System.out.printf("id : %d ", this.id);
+            print_rectangle();
+        }
+        else
+            print_rectangle();
     }
 
-    void print_rectangle(){
+    private void print_rectangle(){
         System.out.printf("RECTANGLE %d %d %d %d\n", p.x, p.y, length, length);
     }
 
@@ -229,11 +249,16 @@ class Circle extends Shape{
     }
 
     @Override
-    void print() {
-        print_circle();
+    void print(boolean id) {
+        if(id) {
+            System.out.printf("id : %d ", this.id);
+            print_circle();
+        }
+        else
+            print_circle();
     }
 
-    void print_circle(){
+    private void print_circle(){
         System.out.printf("CIRCLE %d %d %d\n", p.x, p.y, radius);
     }
 
@@ -289,11 +314,16 @@ class Polygon extends Shape{
     }
 
     @Override
-    void print() {
-        print_polygon();
+    void print(boolean id) {
+        if(id) {
+            System.out.printf("id : %d ", this.id);
+            print_polygon();
+        }
+        else
+            print_polygon();
     }
 
-    void print_polygon(){
+    private void print_polygon(){
         System.out.print("POLYGON ");
         for (Point point : PointList)
             System.out.printf("%d %d ", point.x, point.y);
