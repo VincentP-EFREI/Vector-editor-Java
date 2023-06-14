@@ -1,5 +1,6 @@
 package fr.vincent;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -8,14 +9,15 @@ public class Main {
 
     public static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         boolean run = true;
-        Area screen_area = new Area(45,45);
+        Area screen_area = new Area(30,30);
 
         while(run){
 
             char choice;
+//            CLI.printMenu("menu.txt", 1);
             choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false);
 
             switch (Character.toUpperCase(choice)) {
@@ -75,6 +77,8 @@ public class Main {
                     }
                 }
                 case 'D' -> {
+                    screen_area.draw_area();
+                    screen_area.print_area();
                 }
                 case 'E' -> {
                 }

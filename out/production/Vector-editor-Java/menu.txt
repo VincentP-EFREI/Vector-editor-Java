@@ -1,0 +1,24 @@
+Possible actions :
+A- Add a shape
+B- Display the list of shapes
+C- Delete a shape
+D- Drawing the shapes
+E- Help
+F- Quit;
+
+What shape do you want to add :
+A- Add a point
+B- Add a line
+C- Add a circle
+D- Add a square
+E- Add a rectangle
+F- Add a polygon
+G- Go back to the Menu;
+
+The usage of this program  couldn't be easier.
+You can simply read the different options printed on the terminal.
+It is like a menu where all options are corresponding to a capital letter
+In order to select or execute an option, you just have to write the corresponding letter.
+The program can also ask you to give numbers corresponding to the coordinates of points
+or a radius to create a circle for example.
+You can also qui the program with the capital letter F when you are in the menu.;

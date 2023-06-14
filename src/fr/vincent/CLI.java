@@ -1,7 +1,12 @@
 package fr.vincent;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Objects;
+import java.util.Scanner;
 
 public final class CLI {
 
@@ -181,5 +186,22 @@ public final class CLI {
         }
     }
 
+    public static String printMenu(String filename, int paragraphNumber){
+        InputStream inputStream = CLI.class.getResourceAsStream(filename);
+        assert inputStream != null;
+        Scanner scanner = new Scanner(inputStream);
+        ArrayList<String> returnString = new ArrayList<>();
+        int n = 0;
+        String workString;
+
+        while(scanner.hasNextLine()){
+            workString = scanner.nextLine();
+            System.out.print(workString);
+            if (workString.charAt(workString.length()-1) == ';' || returnString.size() == 0){
+                returnString.add(workString);
+            }
+        }
+        return returnString.get(paragraphNumber);
+    }
 
 }
