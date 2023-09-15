@@ -13,16 +13,16 @@ public class Main {
 
         boolean run = true;
         Area screen_area = new Area(30,30);
+        final String menuPropertiesPath = "src/resource/menu.properties";
 
         while(run){
 
             char choice;
-//            CLI.printMenu("menu.txt", 1);
-            choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, "");
+            choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, CLI.textFileReader(menuPropertiesPath, "main"));
 
             switch (Character.toUpperCase(choice)) {
                 case 'A' -> {
-                    choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, "");
+                    choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, CLI.textFileReader(menuPropertiesPath, "aMenu"));
                     switch (Character.toUpperCase(choice)) {
                         case 'A' -> screen_area.add_shape_to_area(CLI.setPoint());
                         case 'B' -> screen_area.add_shape_to_area(CLI.setLine());
@@ -79,8 +79,13 @@ public class Main {
                 case 'D' -> {
                     screen_area.draw_area();
                     screen_area.print_area();
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
                 case 'E' -> {
+                    System.out.println(CLI.textFileReader(menuPropertiesPath, "eMenu"));
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
                 case 'F' -> run = false;
                 default -> {

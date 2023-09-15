@@ -1,13 +1,8 @@
 package fr.vincent;
 
 import javax.print.DocFlavor;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Objects;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public final class CLI {
 
@@ -16,12 +11,10 @@ public final class CLI {
     public static char boundedChoice(String showStr, char limMin, char limMax, boolean caseSensitif, String optText){
         String val;
         char firstChar = '\\';
-        boolean error;
         do {
-            cls();
-            if(!optText.equals("")){
-                System.out.println(optText);
-            }
+//            cls();
+            System.out.println("Full");
+            System.out.println(optText.isEmpty());
             System.out.printf("Enter a character between %c and %c: ", limMin, limMax);
             val = Main.scanner.nextLine();
             if(!val.isEmpty())
@@ -49,7 +42,6 @@ public final class CLI {
                 Main.scanner.nextLine();
                 error = true;
             }
-            Main.scanner.nextLine();
         }while (error);
         return val;
     }
@@ -206,6 +198,32 @@ public final class CLI {
             }
         }
         return returnString.get(paragraphNumber);
+    }
+
+    public static String textFileReader(String filepath, String paragraphName){
+
+        String outputString = new String();
+
+        try (InputStream input = new FileInputStream(filepath)) {
+
+            Properties prop = new Properties();
+            prop.load(input);
+            outputString = prop.getProperty(paragraphName);
+
+//            try (OutputStream output = new FileOutputStream(filepath)) {
+//
+//                prop.store(output, null);
+//                output.close();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+            System.out.println(outputString);
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+        return outputString;
     }
 
 }
