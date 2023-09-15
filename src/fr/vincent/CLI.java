@@ -1,5 +1,6 @@
 package fr.vincent;
 
+import javax.print.DocFlavor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,13 +13,16 @@ public final class CLI {
 
     private CLI(){}
 
-    public static char boundedChoice(String showStr, char limMin, char limMax, boolean caseSensitif){
+    public static char boundedChoice(String showStr, char limMin, char limMax, boolean caseSensitif, String optText){
         String val;
         char firstChar = '\\';
         boolean error;
         do {
             cls();
-            System.out.print("Enter a character: ");
+            if(!optText.equals("")){
+                System.out.println(optText);
+            }
+            System.out.printf("Enter a character between %c and %c: ", limMin, limMax);
             val = Main.scanner.nextLine();
             if(!val.isEmpty())
                 firstChar = val.charAt(0);

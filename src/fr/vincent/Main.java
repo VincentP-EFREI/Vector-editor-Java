@@ -18,11 +18,11 @@ public class Main {
 
             char choice;
 //            CLI.printMenu("menu.txt", 1);
-            choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false);
+            choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, "");
 
             switch (Character.toUpperCase(choice)) {
                 case 'A' -> {
-                    choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false);
+                    choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, "");
                     switch (Character.toUpperCase(choice)) {
                         case 'A' -> screen_area.add_shape_to_area(CLI.setPoint());
                         case 'B' -> screen_area.add_shape_to_area(CLI.setLine());
