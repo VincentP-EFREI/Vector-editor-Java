@@ -3,8 +3,6 @@ package fr.vincent;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
 
     public static final Scanner scanner = new Scanner(System.in);
@@ -13,16 +11,18 @@ public class Main {
 
         boolean run = true;
         Area screen_area = new Area(30,30);
-        final String menuPropertiesPath = "src/resource/menu.properties";
+
+        //PATH to the menu text file
+        final String menuPropertiesPath = "resource/menu.properties";
 
         while(run){
 
             char choice;
-            choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, CLI.textFileReader(menuPropertiesPath, "main"));
+            choice = CLI.boundedChoice("Your choice : ", 'A', 'G', false, CLI.textFileReader(menuPropertiesPath, "main"));
 
             switch (Character.toUpperCase(choice)) {
                 case 'A' -> {
-                    choice = CLI.boundedChoice("Your choice : ", 'A', 'F', false, CLI.textFileReader(menuPropertiesPath, "aMenu"));
+                    choice = CLI.boundedChoice("Your choice : ", 'A', 'G', false, CLI.textFileReader(menuPropertiesPath, "aMenu"));
                     switch (Character.toUpperCase(choice)) {
                         case 'A' -> screen_area.add_shape_to_area(CLI.setPoint());
                         case 'B' -> screen_area.add_shape_to_area(CLI.setLine());
@@ -30,6 +30,9 @@ public class Main {
                         case 'D' -> screen_area.add_shape_to_area(CLI.setRectangle());
                         case 'E' -> screen_area.add_shape_to_area(CLI.setCircle());
                         case 'F' -> screen_area.add_shape_to_area(CLI.setPolygon());
+                        case 'G' -> {
+                            break;
+                        }
                     }
                 }
                 case 'B' -> {
@@ -87,7 +90,19 @@ public class Main {
                     System.out.print("Press Enter to continue...");
                     scanner.nextLine();
                 }
-                case 'F' -> run = false;
+                case 'F' -> {
+                    choice = CLI.boundedChoice("Your choice : ", 'A', 'D', false, CLI.textFileReader(menuPropertiesPath, "fMenu"));
+                    switch (Character.toUpperCase(choice)) {
+                        case 'A' -> {
+                            screen_area.height = CLI.valAffectation("What height do you want?\n", "Height :");
+                            screen_area.width = CLI.valAffectation("What width do you want?\n", "Width :");
+                        }
+                        case 'B' -> {
+                            break;
+                        }
+                    }
+                }
+                case 'G' -> run = false;
                 default -> {
                     break;
                 }

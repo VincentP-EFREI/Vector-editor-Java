@@ -56,9 +56,9 @@ public class Area {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 if(this.mat.get(i).get(j))
-                    System.out.print("*  ");
+                    System.out.print("* ");
                 else
-                    System.out.print("-  ");
+                    System.out.print("- ");
             }
             System.out.println();
         }

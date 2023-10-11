@@ -1,6 +1,6 @@
 package fr.vincent;
 
-import javax.print.DocFlavor;
+
 import java.io.*;
 import java.util.*;
 
@@ -12,9 +12,10 @@ public final class CLI {
         String val;
         char firstChar = '\\';
         do {
-//            cls();
-            System.out.println("Full");
-            System.out.println(optText.isEmpty());
+            cls();
+            if(!optText.isEmpty()){
+                System.out.println(optText);
+            }
             System.out.printf("Enter a character between %c and %c: ", limMin, limMax);
             val = Main.scanner.nextLine();
             if(!val.isEmpty())
@@ -204,7 +205,7 @@ public final class CLI {
 
         String outputString = new String();
 
-        try (InputStream input = new FileInputStream(filepath)) {
+        try (InputStream input = CLI.class.getClassLoader().getResourceAsStream(filepath)) {
 
             Properties prop = new Properties();
             prop.load(input);
@@ -217,8 +218,6 @@ public final class CLI {
 //            } catch (IOException ex) {
 //                ex.printStackTrace();
 //            }
-            System.out.println(outputString);
-
         } catch (IOException io) {
             io.printStackTrace();
         }
